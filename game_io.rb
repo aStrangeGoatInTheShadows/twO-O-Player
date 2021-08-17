@@ -15,9 +15,11 @@ class Game_IO
 
     if question.is_correct(guess)
       puts "Congradulations Player #{player_num}, you are smarter than a slug."
+      true
     else
       puts "Player #{player_num}, we gotta slap some toast on that head and make an idiot sandwhich."
       puts "You have inched that much closer to your eventual demise"
+      false
     end
   end
 
