@@ -6,7 +6,7 @@ require './game_io.rb'
 # LOGIC CHANGE : SCORES ARE REMAINING STARTING_LIVES
 class Player
   STARTING_LIVES = 3
-
+  
   def initialize (player_num)
     @player_num = player_num
     @remaining_lives = STARTING_LIVES
@@ -32,8 +32,9 @@ class Game_Loop
   def loop()
     while (!@winner) do
       # Ask the first player a math question
-      question = Game_Math.new()
       
+      @io_stream.ask_question(@whoes_turn)
+
       @io_stream.output_scores(@player_one, @player_two)
       puts "This is our main game loop"
       @winner = true
