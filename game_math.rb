@@ -4,18 +4,20 @@ class Game_Math
 
 
   def initialize ()
-# This will generate a math question and save the answer in an instance variable
+  # This will generate a math question and save the answer in an instance variable
     @a = rand(20)
-    @b = rand(20)
-    @operand = choose_operand()
+    @b = rand(1..20)
+    @operand = choose_operand()    
+    @answer =  eval"#{@a}#{@operand}#{@b}"
 
     puts "a:#{@a} b:#{@b} operand:#{@operand}"
-    puts eval"#{@a}#{@operand}#{@b}"
+    puts @answer
   end
 
   # This generates a random number an returns a operand based on that
   def choose_operand()
     operand = nil
+    
     num = rand(1..4)
 
     if num == 1 
@@ -35,14 +37,3 @@ class Game_Math
 
 end
 
-# OPERAND CANNOT BE / IF THE SECOND NUMBER IS 0
-## BUGS TO FIX !!!!
-# /vagrant/ruby/twO-O-Player/game_math.rb:13:in `eval': divided by 0 (ZeroDivisionError)
-#         from (eval):1:in `initialize'
-#         from /vagrant/ruby/twO-O-Player/game_math.rb:13:in `eval'
-#         from /vagrant/ruby/twO-O-Player/game_math.rb:13:in `initialize'
-#         from main.rb:35:in `new'
-#         from main.rb:35:in `loop'
-#         from main.rb:28:in `initialize'
-#         from main.rb:45:in `new'
-#         from main.rb:45:in `<main>'
