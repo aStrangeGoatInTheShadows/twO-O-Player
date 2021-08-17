@@ -11,7 +11,7 @@ class Game_IO
   end
 
   def output_scores (p1, p2) 
-
+    puts "P1: #{p1.remaining_lives} / #{p1.STARTING_LIVES}"
   end
 
 end
