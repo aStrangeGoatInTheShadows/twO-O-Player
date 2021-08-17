@@ -14,8 +14,28 @@ class Game_Math
 
   def initialize ()
 # This will generate a math question and save the answer in an instance variable
+    @a = rand(20)
+    @b = rand(20)
+    @operand = choose_operand()
 
+    puts "a:#{@a} b:#{@b} operand:#{@operand}"
+    puts eval"#{@a}#{@operand}#{@b}"
+  end
 
+  # This generates a random number an returns a operand based on that
+  def choose_operand()
+    operand = nil
+    num = rand(1..4)
+
+    if num == 1 
+      return "+"
+    elsif num == 2 
+      return "-"
+    elsif num == 3 
+      return "*"
+    else num == 4 
+      return "/"
+    end
   end
 
   def is_correct (guess)
@@ -26,12 +46,21 @@ end
 
 
 #  This class will hand input and output methods for the user on behalf of the game loop
-class Player_IO 
+class Game_IO 
   # This class only cares about immediate input and output, it does not store any of its own information
+
+  def initialize ()
+    puts "game io initialized"
+  end
 
   def ask_question (player_num)
 
   end
+
+  def output_scores (p1, p2) 
+
+  end
+
 end
 
 #  This class will run the main game loop, it will keep track of whoes turn it is, check for game ending evalutations, 
@@ -39,6 +68,7 @@ class Game_Loop
 
 
   def initialize ()
+    @io_stream = Game_IO.new()
     @winner = false
     @whoes_turn = 1
     @player_one = Player.new(1)
@@ -52,7 +82,7 @@ class Game_Loop
       # Ask the first player a math question
       question = Game_Math.new()
       
-      
+      @io_stream.output_scores(@player_one, @player_two)
       puts "This is our main game loop"
       @winner = true
     end
