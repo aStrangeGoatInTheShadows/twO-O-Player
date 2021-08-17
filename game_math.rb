@@ -34,3 +34,15 @@ class Game_Math
   end
 
 end
+
+# OPERAND CANNOT BE / IF THE SECOND NUMBER IS 0
+## BUGS TO FIX !!!!
+# /vagrant/ruby/twO-O-Player/game_math.rb:13:in `eval': divided by 0 (ZeroDivisionError)
+#         from (eval):1:in `initialize'
+#         from /vagrant/ruby/twO-O-Player/game_math.rb:13:in `eval'
+#         from /vagrant/ruby/twO-O-Player/game_math.rb:13:in `initialize'
+#         from main.rb:35:in `new'
+#         from main.rb:35:in `loop'
+#         from main.rb:28:in `initialize'
+#         from main.rb:45:in `new'
+#         from main.rb:45:in `<main>'
