@@ -9,9 +9,6 @@ class Game_Math
     @b = rand(1..20)
     @operand = choose_operand()    
     @answer =  eval"#{@a}#{@operand}#{@b}"
-
-    puts "a:#{@a} b:#{@b} operand:#{@operand}"
-    puts @answer
   end
 
   # This generates a random number an returns a operand based on that
