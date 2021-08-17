@@ -31,9 +31,11 @@ class Game_Math
     end
   end
 
+  # lets us know if the guess was correct or not
   def is_correct (guess)
-# compares the players guess to the answer
+    guess == @answer
   end
 
+  attr_reader :a, :b, :operand
 end
 
