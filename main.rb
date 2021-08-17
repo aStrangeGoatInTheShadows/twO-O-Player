@@ -1,18 +1,19 @@
 require './game_math.rb'
+require './game_io.rb'
 
 
-# This class will hold the player, their remaining lives, and their score
+# This class will hold the player, their remaining lives
+# LOGIC CHANGE : SCORES ARE REMAINING STARTING_LIVES
 class Player
+  STARTING_LIVES = 3
+
   def initialize (player_num)
     @player_num = player_num
-    @lives = 3
-    @score = 0
+    @remaining_lives = STARTING_LIVES
   end
+
+  attr_reader :remaining_lives, :STARTING_LIVES
 end
-
-
-
-
 
 #  This class will run the main game loop, it will keep track of whoes turn it is, check for game ending evalutations, 
 class Game_Loop 
