@@ -12,6 +12,10 @@ class Player
     @remaining_lives = STARTING_LIVES
   end
 
+  def devestating_loss_of_life ()
+    @remaining_lives -= 1
+  end
+
   attr_reader :remaining_lives, :STARTING_LIVES
 end
 
@@ -22,27 +26,47 @@ class Game_Loop
   def initialize ()
     @io_stream = Game_IO.new()
     @winner = false
-    @whoes_turn = 1
     @player_one = Player.new(1)
     @player_two = Player.new(2)
-    loop()
+    @whoes_turn = 1
+    @players = [@player_one, @player_two]
+    main_game_loop()
   end  
 
+  def change_player_turn ()
+    if @whoes_turn == 1
+      @whoes_turn = 2
+    else
+      @whoes_turn = 1
+    end
+  end
   
-  def loop()
+  def main_game_loop()
     while (!@winner) do
       # Ask the first player a math question
       
-      @io_stream.ask_question(@whoes_turn)
+      correct_guess = @io_stream.ask_question(@whoes_turn)
 
-      @io_stream.output_scores(@player_one, @player_two)
-      puts "This is our main game loop"
-      @winner = true
+      if(!correct_guess)
+        @players[@whoes_turn - 1].devestating_loss_of_life
+      end
+
+      @winner = @player_one.remaining_lives < 0|| @player_two.remaining_lives < 0 
+
+      if !@winner
+        @io_stream.output_scores(@player_one, @player_two)
+      end
+
+      puts "----------------------------------------"
+
+      change_player_turn()
     end
-  end
 
+    puts "Congradulations Player #{@whoes_turn}, You've won the game."
+  end
 end
 
+# Go!
 game = Game_Loop.new()
 
   # List of nouns = generate_question, check_math, inform_loser, inform_winner, generate_new_turn
